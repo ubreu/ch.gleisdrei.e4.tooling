@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+<extension
+         point="org.eclipse.ui.menus">
+      <menuContribution
+         locationURI=
+         "popup:org.eclipse.ui.navigator.ProjectExplorer#PopupMenu?after=additions">
+         <command
+               commandId="ch.gleisdrei.e4.tooling.command.generate.constants"
+               label="Generate Constants">
+				<visibleWhen checkEnabled="false">
+			<with variable="selection">
+				 <iterate ifEmpty="false">
+				<adapt
+				      type="org.eclipse.core.resources.IResource">
+				      <test
+				            property="org.eclipse.core.resources.extension"
+				            value="e4xmi">
+				      </test>
+				</adapt>
+				</iterate>
+			</with>
+           </visibleWhen>
+         </command>
+      </menuContribution>
+   </extension>
+<extension
+      point="org.eclipse.ui.commands">
+   <command
+         id="ch.gleisdrei.e4.tooling.command.generate.constants"
+         name="Generate Constants">
+   </command>
+</extension>
+<extension
+      point="org.eclipse.ui.handlers">
+   <handler
+         class="ch.gleisdrei.e4.tooling.handlers.GenerateConstantsHandler"
+         commandId="ch.gleisdrei.e4.tooling.command.generate.constants">
+   </handler>
+</extension>
+
+</plugin>
